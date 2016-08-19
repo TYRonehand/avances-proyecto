@@ -1,0 +1,21 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:gwt="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+	
+	</ui:style>
+	<gwt:HTMLPanel>
+		        <!-- seccion para dropdown-->
+		        <ul class="nav pull-right top-menu">
+		            <!-- Usuario dropdown inicia-->
+		            <li class="dropdown">
+		            
+                    	<gwt:Hyperlink ui:field="profileLink" targetHistoryToken="" text="User X" width="117px"/>
+                    	
+                    	<gwt:Hyperlink ui:field="exitLink" targetHistoryToken="" text="Exit" width="117px"/>
+		                    	
+		            </li>
+		            <!-- usuario dropdown fin -->
+		        </ul>
+	</gwt:HTMLPanel>
+</ui:UiBinder> 

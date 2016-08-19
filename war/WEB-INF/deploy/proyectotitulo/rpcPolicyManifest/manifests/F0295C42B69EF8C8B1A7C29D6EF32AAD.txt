@@ -1,0 +1,2 @@
+serviceClass: com.project.titulo.client.ServerService
+path: 36110FB549DEEF494DA810DC5401C667.gwt.rpc
