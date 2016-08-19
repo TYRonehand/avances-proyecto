@@ -8,8 +8,12 @@
 	.labelhtml{
 		align:left;
 	}
+	.HTMLheader{
+		padding-top:50px
+	}
 	</ui:style>
-	<gwt:HTMLPanel>
+	<gwt:HTMLPanel addStyleNames='{style.HTMLheader}'>
+		
 	
 		<!-- perfil info -->
 	    <div class="row">
@@ -102,7 +106,7 @@
 	                                        <div class="form-group">
 	                                            <label class="col-lg-2 control-label">Country</label>
 	                                            <div class="col-lg-6">
-	                                            	<gwt:TextBox ui:field="countryInput" addStyleNames='{style.editInput}' maxLength="15"  visibleLength="15"></gwt:TextBox>
+	                                            	<gwt:ListBox ui:field="countryBox"  addStyleNames='{style.editInput}' />
 	                                            </div>
 	                                        </div>
 	
@@ -123,7 +127,7 @@
 	                                        <div class="form-group">
 	                                            <div class="col-lg-12 col-lg-9 col-lg-6">
 	                                            	<gwt:Button ui:field="submitBTN" >Save</gwt:Button>
-	                                            	<gwt:Button ui:field="cancelBTN" >Cancel</gwt:Button>
+	                                            	<gwt:Button ui:field="cancelBTN" >Reset</gwt:Button>
 	                                            </div>
 	                                        </div>
 	

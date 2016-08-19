@@ -1,6 +1,8 @@
 package com.project.titulo.client.model;
 
-public class UserFile {
+import com.google.gwt.user.client.rpc.IsSerializable;
+
+public class UserFile  implements IsSerializable{
 	private String iddatafile;
 	private String iduser;
 	private String title;

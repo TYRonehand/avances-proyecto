@@ -3,8 +3,14 @@
    xmlns:gwt='urn:import:com.google.gwt.user.client.ui'>
 	<ui:style>
 	
+	.HTMLheader{
+		height:430px;
+		width:319px;
+		align:center;
+		margin:auto;
+	}
 	</ui:style>
-	<gwt:HTMLPanel  height="430px" width="319px">
+	<gwt:HTMLPanel  addStyleNames='{style.HTMLheader}' >
 		<div class="login">
 	        <div class="loginscreen">
 	

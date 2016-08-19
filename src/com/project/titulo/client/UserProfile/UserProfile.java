@@ -12,12 +12,14 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
 import com.project.titulo.client.ServerService;
 import com.project.titulo.client.ServerServiceAsync;
 import com.project.titulo.client.model.User;
+import com.project.titulo.shared.DataOptional;
 
 public class UserProfile extends Composite {
 
@@ -37,13 +39,10 @@ public class UserProfile extends Composite {
 	@UiField Label labelError1;
 	@UiField TextBox lastnameInput;
 	@UiField Label labelError2;
-	@UiField TextBox countryInput;
-	//@UiField Label labelError3;
+	@UiField ListBox countryBox;
 	@UiField TextBox ocupationInput;
-	//@UiField Label labelError1;
 	@UiField TextBox webInput;
-	//@UiField Label labelError1;
-	
+	//butons
 	@UiField Button submitBTN;
 	@UiField Button cancelBTN;
 	
@@ -61,8 +60,18 @@ public class UserProfile extends Composite {
 	public UserProfile(String iduser) {
 		initWidget(uiBinder.createAndBindUi(this));
 		getUser(iduser);
+		addCountry();
 	}
 
+	//add country to combobox
+	private void addCountry(){
+		String[] countryList = DataOptional.getCountries(); 
+		for(String country : countryList)
+		{
+			countryBox.addItem(country);
+		}
+	}
+	
 	//load all data from user
 	private void getUser(String user) {
 		serverService.getUserInfo(user, new AsyncCallback<User>(){
@@ -118,7 +127,21 @@ public class UserProfile extends Composite {
 		//info inputs
 		this.nameInput.setValue(myuser.getName());
 		this.lastnameInput.setValue(myuser.getLastname());
-		this.countryInput.setValue(myuser.getCountry());
+		
+		
+		
+		//this.countryInput.setValue(myuser.getCountry());
+		int index=0;
+		for(int i=0;i<this.countryBox.getItemCount();i++)
+		{
+			if(this.countryBox.getItemText(i).equals(myuser.getCountry())){
+				index=i;
+				break;
+			}
+		}
+		this.countryBox.setItemSelected(index, true);
+		
+		
 		this.ocupationInput.setValue(myuser.getOcupation());
 		this.webInput.setValue(myuser.getWeb());
 	}
@@ -139,13 +162,15 @@ public class UserProfile extends Composite {
 		 			"",
 		 			UserInfo.getCreation(),
 		 			UserInfo.getRegistered(),
-		 			UserInfo.getBanned()
+		 			UserInfo.getBanned(),
+		 			""
 		 		  );
 			final String auxid= aux.getId();
 			
 			aux.setName(this.nameInput.getValue());
 			aux.setLastname(this.lastnameInput.getValue());
-			aux.setCountry(this.countryInput.getValue());
+			//combo box
+			aux.setCountry(countryBox.getItemText(countryBox.getSelectedIndex()));
 			aux.setOcupation(this.ocupationInput.getValue());
 			aux.setWeb(this.webInput.getValue());
 			//connect to servlet and send user

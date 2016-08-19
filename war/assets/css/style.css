@@ -15,8 +15,8 @@ Website: http://geekslabs.com/
 @import url(line-icons.css);
 
 body {
-    color: #797979;
-    background: #eeeeee;
+    color: #646567;
+    background: #f0f0f0;
     font-family: 'Lato', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
@@ -62,12 +62,12 @@ table tr th {
 
 ::selection {
     background: #007aff;
-    color: #fff;
+    color: #646567;
 }
 
 ::-moz-selection {
     background: #007aff;
-    color: #fff;
+    color: #646567;
 }
 
 #container {
@@ -93,11 +93,8 @@ table tr th {
 }
 
 .lite {
-    color: #007aff !important;
+    color: white !important;
 }
-
-
-
 
 /*Modal Content*/
 
@@ -132,51 +129,10 @@ table tr th {
 }
 
 
-/*chat-*/
-
-.chat-online-profile li a i {
-    position: relative;
-    left: -12px;
-    top: -10px;
-}
-
-.chat-online-profile li a span i {
-    position: relative;
-    top: 10px;
-}
-
-.chat-online-profile li a {
-    border-bottom: 1px solid #D7D7D7;
-}
-
-.chat-online-profile li a:hover,
-.chat-online-profile li a:focus,
-.chat-online-profile li a:active {
-    background: #eeeeee !important;
-    border-bottom: 1px solid #007aff !important;
-}
-
-.chat-online-profile li a:hover span i,
-.chat-online-profile li a:focus span i,
-.chat-online-profile li a:active span i {
-    color: #007aff;
-}
-
-.right-chat-panel {
-    max-height: 600px;
-}
-
-.compose-mail {
-    width: 95%;
-    font-size: 16px;
-    border-radius: 0;
-}
-
-
 /*main content*/
 
 #main-content {
-    margin-left: 18px;
+    padding-top: 0px;
 }
 
 .header,
@@ -222,12 +178,22 @@ table tr th {
 }
 
 a.logo {
-    font-size: 22px;
+    /*font-size: 22px;
     font-weight: 300;
-    color: #FFEA2E;
+    color: #d12421;
     float: left;
     margin-top: 15px;
-    text-transform: uppercase;
+    text-transform: uppercase;*/
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align:left;
+    float: none;
+    display: block;
+    background-repeat: no-repeat;
+    background-image: url(../img/svg-sprite.svg);
+    background-position: 0 33.53903944191038%;
+    width: 260px;
+    height: 78.74px;
 }
 
 a.logo:hover,
@@ -237,7 +203,7 @@ a.logo:focus {
 }
 
 a.logo span {
-    color: #007aff;
+    color: white;
 }
 
 
@@ -260,14 +226,9 @@ ul.top-menu > li {
     margin-left: 65px;
 }
 
-#task_notificatoin_bar,
-#mail_notificatoin_bar,
-#alert_notificatoin_bar {
-    margin-top: 7px;
-}
 
 ul.top-menu > li > a {
-    color: #fed189;
+    color: #646567;
     font-size: 18px;
     padding: 2px 6px;
     margin-right: 15px;
@@ -378,7 +339,7 @@ div[data-role="editor-toolbar"] {
 
 .dropdown-menu.extended li p {
     background-color: #F1F2F7;
-    color: #666666;
+    color: #646567;
     margin: 0;
     padding: 10px;
 }
@@ -633,75 +594,6 @@ div[data-role="editor-toolbar"] {
 }
 
 
-/* .info-box
-=================================================================== */
-
-.info-box {
-    min-height: 140px;
-    margin-bottom: 30px;
-    padding: 20px;
-    color: white;
-    -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
-    -moz-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
-}
-
-.info-box i {
-    display: block;
-    height: 100px;
-    font-size: 60px;
-    line-height: 100px;
-    width: 100px;
-    float: left;
-    text-align: center;
-    margin-right: 20px;
-    padding-right: 20px;
-    color: rgba(255, 255, 255, 0.75);
-}
-
-.info-box .count {
-    margin-top: 20px;
-    font-size: 34px;
-    font-weight: 700;
-}
-
-.info-box .title {
-    font-size: 12px;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.info-box .desc {
-    margin-top: 10px;
-    font-size: 12px;
-}
-
-.info-box.danger {
-    background: #ff5454;
-    border: 1px solid #ff2121;
-}
-
-.info-box.warning {
-    background: #fabb3d;
-    border: 1px solid #f9aa0b;
-}
-
-.info-box.primary {
-    background: #20a8d8;
-    border: 1px solid #1985ac;
-}
-
-.info-box.info {
-    background: #67c2ef;
-    border: 1px solid #39afea;
-}
-
-.info-box.success {
-    background: #79c447;
-    border: 1px solid #61a434;
-}
-
-
 /*----------------	color------------------------*/
 
 .dark-heading-bg {
@@ -719,107 +611,6 @@ div[data-role="editor-toolbar"] {
     background-color: #fff;
 }
 
-.red-bg {
-    color: #fff;
-    background: #d95043;
-    background-color: #d95043;
-}
-
-.blue-bg {
-    color: #fff;
-    background: #337ab7;
-    background-color: #337ab7;
-}
-
-.green-bg {
-    color: #fff;
-    background: #26c281;
-    background-color: #26c281;
-}
-
-.greenLight-bg {
-    color: #71843f;
-    background: #71843f;
-    background-color: #71843f;
-}
-
-.yellow-bg {
-    color: #fff;
-    background: #fc6;
-    background-color: #fc6;
-}
-
-.orange-bg {
-    color: #fff;
-    background: #f4b162;
-    background-color: #f4b162;
-}
-
-.purple-bg {
-    color: #fff;
-    background: #af91e1;
-    background-color: #af91e1;
-}
-
-.pink-bg {
-    color: #fff;
-    background: #f78db8;
-    background-color: #f78db8;
-}
-
-.lime-bg {
-    color: #fff;
-    background: #a8db43;
-    background-color: #a8db43;
-}
-
-.magenta-bg {
-    color: #fff;
-    background: #e65097;
-    background-color: #e65097;
-}
-
-.teal-bg {
-    color: #fff;
-    background: #97d3c5;
-    background-color: #97d3c5;
-}
-
-.brown-bg {
-    color: #fff;
-    background: #d1b993;
-    background-color: #d1b993;
-}
-
-.gray-bg {
-    color: #768399;
-    background: #e4e9eb;
-    background-color: #e4e9eb;
-}
-
-.dark-bg {
-    color: #fff;
-    background: #000;
-    background-color: #000;
-}
-
-.facebook-bg {
-    color: #fff;
-    background: #3b5998;
-    background-color: #3b5998;
-}
-
-.twitter-bg {
-    color: #fff;
-    background: #00aced;
-    background-color: #00aced;
-}
-
-.linkedin-bg {
-    color: #fff;
-    background: #4875b4;
-    background-color: #4875b4;
-}
 
 
 /*----------------------	panel-----------------*/
@@ -833,25 +624,32 @@ div[data-role="editor-toolbar"] {
     -moz-box-shadow: none;
     box-shadow: none;
     margin-bottom: 30px;
+    
 }
 
 .panel .panel-heading {
     line-height: 34px;
     padding: 0 15px;
     min-height: 34px;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border-left: 0px solid #f0f0f0;
+    border-right: 0px solid #f0f0f0;
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
     position: relative;
-    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .05);
-    -moz-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .05);
-    -webkit-box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .05);
+    color:#666;
 }
 
 .panel .panel-heading .panel-title {
-    line-height: 40px;
+    height: 100%;
+    width: auto;
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+    margin: 0;
+    line-height: 34px;
+    font-weight: bold;
+    letter-spacing: 0;
 }
 
 .panel .panel-heading i {
@@ -867,7 +665,7 @@ div[data-role="editor-toolbar"] {
     border-right: 1px solid #e6e6e6;
 }
 
-.panel .panel-heading h2 {
+.panel .panel-heading h3 {
     height: 100%;
     width: auto;
     display: inline-block;
@@ -925,9 +723,9 @@ div[data-role="editor-toolbar"] {
     border-width: 1px 1px 2px;
     border-style: solid;
     border-top: none;
-    border-right-color: #ccc!important;
-    border-bottom-color: #ccc!important;
-    border-left-color: #ccc!important;
+    border-right-color: #f0f0f0!important;
+    border-bottom-color: #f0f0f0!important;
+    border-left-color: #f0f0f0!important;
 }
 
 .panel .panel-body-map {
@@ -4425,15 +4223,16 @@ span.customSelect.changed {
 
 /* DEMAS */
 .login {
-    margin: 20px auto;
-    width: 300px;
+    width: 100%;
     border-radius: 18%;
+    padding: 20px;
+    align:center;
 }
 
 .loginscreen {
     background-color: #FFF;
+    border-radius: 5px;
     padding: 20px;
-    border-radius: 5px
 }
 
 .apptitle {
@@ -4449,7 +4248,7 @@ span.customSelect.changed {
     margin-bottom: 10px;
 }
 
-input {
+input,select {
     text-align: center;
     background-color: #ECF0F1;
     border: 1px solid #777;
@@ -4461,25 +4260,10 @@ input {
     transition: border .5s;
 }
 
-input:focus {
+input:focus,select:focus {
     border: 2px solid #777;
     box-shadow: none;
 }
-
-select {
-    width: 400px; 
-    text-align-last:center;
-    text-align: center;
-    background-color: #ECF0F1;
-    border: 2px solid #007aff;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: 200;
-    padding: 10px 0;
-    width: 250px;
-    transition: border .5s;
-}
-
 
 .btn {
     border: 2px solid transparent;

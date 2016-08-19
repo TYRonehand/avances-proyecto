@@ -1,48 +1,56 @@
 package com.project.titulo.shared;
 
+import com.google.gwt.regexp.shared.RegExp;
+
+
 
 public class FieldVerifier {
 
+	//validation name
 	public static boolean isValidName(String name) {
 		if (name == null) {
 			return false;
 		}
-		return name.length() > 3;
-	}
-	
-	public static boolean isValidMail(String mail){
-		int arrovas=0;
-		int spaces=0;
-		int dots=0;
-		boolean error = false;
 		
-		//conteo caracteres
-		for(char c : mail.toCharArray())
-		{
-			if(c=='@')
-				arrovas++;
-			if(c==' ')
-				spaces++;
-			if(c=='.')
-				dots++;
-			
-		}
-		//verificacion dominio no mas de un punto junto
-		if(mail.length()>0)
-		{
-			char[] dom= mail.toCharArray();
-			for(int i=0 ; i<mail.length()-1 ; i++)
-			{
-				//si existen '..' existe error
-				if(dom[i]==dom[i+1] && dom[i]=='.')
-					error=true;
-			}
-		}else
-			error=true;
-		
-		//condicional
-		if(arrovas==1 && dots>0 && spaces==0 && error==false)
-			return true;
+		// Compile and use regular expression
+		RegExp regExp = RegExp.compile("[a-zA-Z]");
+		boolean matchFound = regExp.test(name);
+
+		if (matchFound) return true;
 		return false;
 	}
+	
+	//validation email
+	public static boolean isValidMail(String mail){
+		RegExp regExp = RegExp.compile("[a-zA-Z0-9_.]*@[a-zA-Z]*.[a-zA-Z]*");
+		boolean matchFound = regExp.test(mail);
+
+		if (matchFound) return true;
+		return false;
+	}
+
+	//validation password
+	public static Boolean isValidPass(String pass){
+		RegExp regExp = RegExp.compile("[a-zA-Z0-9]");
+		boolean matchFound = regExp.test(pass);
+
+		if (matchFound) return true;
+		return false;
+		
+	}
+	
+	//validation password
+	public static Boolean isEqualPasswords(String pass, String passRepeat){
+		
+		if( pass.equals(passRepeat)){
+			return true;
+		}
+		return false;
+		
+	}
+	
+	
+	
+	
+	
 }

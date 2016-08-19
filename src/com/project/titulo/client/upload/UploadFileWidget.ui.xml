@@ -1,17 +1,21 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder 
   xmlns:ui="urn:ui:com.google.gwt.uibinder"
-  xmlns:gwt="urn:import:com.google.gwt.user.client.ui">
+  xmlns:gwt="urn:import:com.google.gwt.user.client.ui" xmlns:w="urn:import:com.google.gwt.widget.client">
 	<ui:style>
 	
+	.HTMLheader{
+		padding-top:50px
+	}
 	</ui:style>
-	<gwt:HTMLPanel>
+	<gwt:HTMLPanel addStyleNames='{style.HTMLheader}'>
+		
 	<!-- MODAL - Menu opciones edición-->
         <div class="row">
-            <div class="col-lg-12 col-sm-6">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Tools
+                    <h3 class="panel-title">Tools</h3>
                     </header>
                     <div class="panel-body">
                         <!-- Botones -->
@@ -83,14 +87,10 @@
                     </div>
                 </section>
             </div>
-        </div>
-
-        <!-- Tabla con archivos -->
-        <div class="row" align="center">
-            <div class="col-lg-12 col-sm-6">
+        	<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        My Files
+                        <h3 class="panel-title">My Files</h3>
                     </header>
                     <div class="panel-body">
                         
@@ -98,6 +98,11 @@
                     </div>
                 </section>
             </div>
+        </div>
+
+        <!-- Tabla con archivos -->
+        <div class="row">
+            
         </div>
 	
 	

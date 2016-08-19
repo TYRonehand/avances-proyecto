@@ -3,8 +3,12 @@
 	xmlns:g="urn:import:com.google.gwt.user.client.ui">
 	<ui:style>
 	
+	.HTMLheader{
+		padding-top:50px
+	}
 	</ui:style>
-	<g:HTMLPanel>
+	<g:HTMLPanel addStyleNames='{style.HTMLheader}'>
+		
 	
 		<!-- PANELE INICIO-->
         <div class="row" >
@@ -21,7 +25,7 @@
                     </div>
 
                     <!--Texto-->
-                    <div id="collapseOne" class="panel-collapse ">
+                    <div id="collapseOne" class="panel-collapse collapse in">
                         <div class="panel-body">
                             <div class="panel-text"  align="justify">
 

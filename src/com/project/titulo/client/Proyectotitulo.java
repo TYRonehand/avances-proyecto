@@ -7,7 +7,6 @@ import com.google.gwt.user.client.ui.RootPanel;
 import com.project.titulo.client.home.HomeWidget;
 import com.project.titulo.client.login.LoginWidget;
 import com.project.titulo.client.menu.MenuUser;
-import com.project.titulo.client.session.SessionControl;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -23,39 +22,39 @@ public class Proyectotitulo implements EntryPoint {
 		if(!Cookies.getCookie("MOPuser").equals("") && !Cookies.getCookie("MOPmail").equals("") && !Cookies.getCookie("MOPname").equals("") && !Cookies.getCookie("MOPban").equals(""))
 		{
 			//si no esta baneado
-			if(Cookies.getCookie("MOPban").equals("0"))
+			if(Cookies.getCookie("MOPban").equals("0") ||Cookies.getCookie("MOPban").equals("%00") || Cookies.getCookie("MOPban").equals("false"))//true
 			{
 				//clean all
 				RootPanel.get("GWTcontainer").clear();
-				// widget close session	
-				RootPanel.get("GWTusername").add(new SessionControl(Cookies.getCookie("MOPname"),true));
+				RootPanel.get("GWTmenu").clear();
 				//menu widget
-				RootPanel.get("GWTmenu").add(new MenuUser());
+				RootPanel.get("GWTmenu").add(new MenuUser(Cookies.getCookie("MOPname"),true));
 				//home Widget
 				RootPanel.get("GWTcontainer").add(new HomeWidget());
 				
 			}
-			else if(Cookies.getCookie("MOPban").equals("0"))
+			else if(Cookies.getCookie("MOPban").equals("1") || Cookies.getCookie("MOPban").equals("true"))//false
 			{
 				//alert si el usuario a sido baneado
 				Window.alert("We are sorry! but you are banned temporaly.");
-			}
-			else{
-
-				//cualquier otro caso sera enviado al login
-				RootPanel.get("GWTcontainer").add(new LoginWidget());
-				// widget close session	
-				RootPanel.get("GWTusername").clear();	
-			}
+				GoToLogin();
+			}else
+				GoToLogin();
 			
 		}
 		else{
-
-			//cualquier otro caso sera enviado al login
-			RootPanel.get("GWTcontainer").add(new LoginWidget());
-			// widget close session	
-			RootPanel.get("GWTusername").clear();		
+			GoToLogin();
+				
 		}
 		
 	}
+	
+	private void GoToLogin(){
+		// widget close session	
+		RootPanel.get("GWTmenu").clear();	
+		//cualquier otro caso sera enviado al login
+		RootPanel.get("GWTmenu").add(new LoginWidget());
+	}
+	
+	
 }

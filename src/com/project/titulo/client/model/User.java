@@ -15,13 +15,14 @@ public class User implements IsSerializable {
 	private String creation;
 	private String registered;
 	private String banned;
+	private String pin;
 	
 	@SuppressWarnings("unused")
 	private User() {
 		//just here because GWT wants it.
 	}
 	public User(String id, String mail, String name, String lastname, String country, String ocupation, String web, 
-				String university, String password, String creation, String registered, String banned) 
+				String university, String password, String creation, String registered, String banned,String pin) 
 	{
 		this.setId(id);
 		this.setMail(mail);
@@ -35,6 +36,7 @@ public class User implements IsSerializable {
 		this.setCreation(creation);
 		this.setRegistered(registered);
 		this.setBanned(banned);
+		this.setPin(pin);
 		
 	}
 	public String getId() {
@@ -108,6 +110,12 @@ public class User implements IsSerializable {
 	}
 	public void setMail(String mail) {
 		this.mail = mail;
+	}
+	public String getPin() {
+		return pin;
+	}
+	public void setPin(String pin) {
+		this.pin = pin;
 	}
 
 	

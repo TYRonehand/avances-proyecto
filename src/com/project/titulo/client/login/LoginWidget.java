@@ -25,7 +25,7 @@ import com.project.titulo.client.menu.MenuUser;
 import com.project.titulo.client.model.User;
 import com.project.titulo.client.recovery.RecoveryWidget;
 import com.project.titulo.client.register.RegisterWidget;
-import com.project.titulo.client.session.SessionControl;
+import com.project.titulo.shared.FieldVerifier;
 
 public class LoginWidget extends Composite{
 
@@ -39,7 +39,6 @@ public class LoginWidget extends Composite{
 	
 	//RPC
 	private final ServerServiceAsync serverService = GWT.create(ServerService.class);
-	
 	
 	//crear widget
 	private static LoginWidgetUiBinder uiBinder = GWT
@@ -55,11 +54,12 @@ public class LoginWidget extends Composite{
 	//iniciador
 	public LoginWidget() 
 	{
+		//carga recursos
 		this.res = GWT.create(LoginResource.class);
-	    res.style().ensureInjected();
-	      
+	    //establece estilos
+		res.style().ensureInjected();
+		//inicia widgets
 		initWidget(uiBinder.createAndBindUi(this));
-		
 	}
 	//limpiar inputs
 	private void clearInputs()
@@ -72,26 +72,47 @@ public class LoginWidget extends Composite{
 	@UiHandler("mailInput")
     void handleMailInputChange(ValueChangeEvent<String> event) 
 	{
-      if (event.getValue().length() < 6) {
-    	  labelError1.setVisible(true);
-    	  labelError1.setText("minimum lenght 6");
-      } else {
-    	  labelError1.setVisible(false);
-          labelError1.setText("");
-      }
+      if(FieldVerifier.isValidMail(event.getValue()) && event.getValue().length() >= 6)
+		{
+	        labelError1.setText("");
+	    	labelError1.setVisible(false);
+		}else{
+			
+			if (event.getValue().length() < 6) 
+			{
+		    	labelError1.setText("Minimum lenght 6");
+		    	labelError1.setVisible(true);
+		    } 
+			if(!FieldVerifier.isValidMail(event.getValue()))
+			{
+				labelError1.setText("Invalid email. example: name@company.com");
+				labelError1.setVisible(true);
+			}
+		}
    }
 
 	//evento cambio valor  input
 	@UiHandler("passInput")
     void handlePassInputChange(ValueChangeEvent<String> event) 
 	{
-      if (event.getValue().length() < 6) {
-    	  labelError2.setText("minimum lenght 6");
-    	  labelError2.setVisible(true);
-      } else {
-          labelError2.setText("");
-    	  labelError2.setVisible(false);
-      }
+		if(FieldVerifier.isValidPass(event.getValue()) && event.getValue().length() >= 6)
+		{
+	        labelError2.setText("");
+	    	labelError2.setVisible(false);
+		}
+		else{
+
+			if (event.getValue().length() < 6) 
+			{
+		    	labelError2.setText("Minimum lenght 6");
+		    	labelError2.setVisible(true);
+		    }
+			if(!FieldVerifier.isValidPass(event.getValue()))
+			{
+				labelError2.setText("Use letters and numbers");
+				labelError2.setVisible(true);
+			}
+		}
    }
 	
 	//click registro link
@@ -99,7 +120,8 @@ public class LoginWidget extends Composite{
 	void onRegisteLinkClick(ClickEvent event) 
 	{
 		RootPanel.get("GWTcontainer").clear();
-		RootPanel.get("GWTcontainer").add(new RegisterWidget());
+		RootPanel.get("GWTmenu").clear();
+		RootPanel.get("GWTmenu").add(new RegisterWidget());
 	}
 	
 	//click recuperar link
@@ -107,28 +129,24 @@ public class LoginWidget extends Composite{
 	void onRecoveryLinkClick(ClickEvent event) 
 	{
 		RootPanel.get("GWTcontainer").clear();
-		RootPanel.get("GWTcontainer").add(new RecoveryWidget());
+		RootPanel.get("GWTmenu").clear();
+		RootPanel.get("GWTmenu").add(new RecoveryWidget());
 	}
 	
 	/*Evento click SUBMIT*/
 	@UiHandler("submitBTN")
 	void onSubmitBTNClick(ClickEvent event) 
 	{
-		Cookies.removeCookie("MOPuser");
-		Cookies.removeCookie("MOPmail");
-		Cookies.removeCookie("MOPname");
-		Cookies.removeCookie("MOPban");
 		//no existen errores
 		if(passInput.getText().length()>=6 && mailInput.getText().length()>=6)
 		{
 			//consulta datos
 			serverService.authenticateUser( mailInput.getText(), passInput.getText(), new AsyncCallback<User>()
 			{
-
 				@Override
-				public void onFailure(Throwable caught) {
-					Window.alert(" UPS! Server offline");
-					
+				public void onFailure(Throwable caught) 
+				{
+					Window.alert(" UPS! Server is offline");
 					//limpiar input
 					clearInputs();
 				}
@@ -139,39 +157,34 @@ public class LoginWidget extends Composite{
 					//validaciones
 					if(result!=null)
 					{
-						//guardamos las cookies con info
-						Cookies.setCookie("MOPuser", result.getId(), new Date(new Date().getTime()+1000*60*60*2));
-						Cookies.setCookie("MOPmail", result.getMail(), new Date(new Date().getTime()+1000*60*60*2));
-						Cookies.setCookie("MOPname", result.getName()+" "+result.getLastname(), new Date(new Date().getTime()+1000*60*60*2));
-						Cookies.setCookie("MOPban", result.getBanned(), new Date(new Date().getTime()+1000*60*60*2));
-						
-						if(result.getBanned()=="0")
-						{
-
-							// widget close session	
-							RootPanel.get("GWTusername").add(new SessionControl(Cookies.getCookie("MOPname"),true));
-							//clean
-							// widget menu
-							RootPanel.get("GWTmenu").add( new MenuUser());
-							// widget  home
-							RootPanel.get("GWTcontainer").clear();
-							RootPanel.get("GWTcontainer").add(new HomeWidget());
-							
-						}
-						else
+						//is banned
+						if(result.getBanned().toString()=="1" || result.getBanned().toString()=="true")
 						{
 							Window.alert("Sorry but this account is temporaly banned");
 						}
-						
+						else//Get in the account
+						{
+							//guardamos las cookies con info
+							Cookies.setCookie("MOPuser", result.getId(), new Date(new Date().getTime()+1000*60*60*1));
+							Cookies.setCookie("MOPmail", result.getMail(), new Date(new Date().getTime()+1000*60*60*1));
+							Cookies.setCookie("MOPname", result.getName()+" "+result.getLastname(), new Date(new Date().getTime()+1000*60*60*1));
+							Cookies.setCookie("MOPban", result.getBanned(), new Date(new Date().getTime()+1000*60*60*1));
+							
+							//clean
+							RootPanel.get("GWTmenu").clear();
+							RootPanel.get("GWTcontainer").clear();
+							// widget menu
+							RootPanel.get("GWTmenu").add( new MenuUser(Cookies.getCookie("MOPname"),true));
+							// widget  home
+							RootPanel.get("GWTcontainer").add(new HomeWidget());
+						}
 					}
 					else
 					{
 						Window.alert(" User or password don't exist.");
 						clearInputs();
 					}
-					
 				}
-				
 			});
 
 		}else{

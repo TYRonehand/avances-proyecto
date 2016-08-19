@@ -99,7 +99,8 @@ public class RecoveryWidget extends Composite {
 	void onRegisteLinkClick(ClickEvent event) 
 	{
 		RootPanel.get("GWTcontainer").clear();
-		RootPanel.get("GWTcontainer").add(new LoginWidget());
+		RootPanel.get("GWTmenu").clear();
+		RootPanel.get("GWTmenu").add(new LoginWidget());
 	}
 	
 	/*Evento click SEND CODE*/

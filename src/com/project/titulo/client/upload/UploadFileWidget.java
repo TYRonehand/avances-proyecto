@@ -9,13 +9,10 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.Widget;
-import com.project.titulo.client.ServerService;
-import com.project.titulo.client.ServerServiceAsync;
 
 public class UploadFileWidget extends Composite {
 
 	//RPC
-	private final ServerServiceAsync serverService = GWT.create(ServerService.class);
 	
 	//uifields	
 	@UiField FileUpload fileBTN;
@@ -31,13 +28,11 @@ public class UploadFileWidget extends Composite {
 	}
 	
 	
-	
-	
 	//handlers
 	//click registro link
 	@UiHandler("uploadBTN")
 	void onRegisteLinkClick(ClickEvent event) 
 	{
+		
 	}
-	
 }

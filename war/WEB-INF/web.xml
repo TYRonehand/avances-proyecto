@@ -16,6 +16,9 @@
     <url-pattern>/proyectotitulo/service</url-pattern>
   </servlet-mapping>
   
+  <!-- Mail Servlet -->
+
+  
   <!-- Default page to serve -->
   <welcome-file-list>
     <welcome-file>Proyectotitulo.html</welcome-file>

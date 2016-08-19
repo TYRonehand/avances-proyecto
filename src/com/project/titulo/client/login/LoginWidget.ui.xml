@@ -3,7 +3,15 @@
    xmlns:gwt='urn:import:com.google.gwt.user.client.ui' 
 	xmlns:res='urn:with:com.carlos.normalweb.client.login.LoginResource'>
 	<ui:with type="com.project.titulo.client.login.LoginResource" field="res"> </ui:with>
-	<gwt:HTMLPanel  height="430px" width="319px">
+	<ui:style>
+	.HTMLheader{
+		height:430px;
+		width:319px;
+		align:center;
+		margin:auto;
+	}
+	</ui:style>
+	<gwt:HTMLPanel  addStyleNames='{style.HTMLheader}' >
 		<div class="login">
 	        <div class="loginscreen">
 	
@@ -22,7 +30,7 @@
 	            
 	               <!-- usuario -->
 	                <div class="controlgroup">
-	                    <gwt:InlineLabel  text="User:" horizontalAlignment="ALIGN_CENTER" width="100%"/>
+	                    <gwt:InlineLabel  text="E-mail:" horizontalAlignment="ALIGN_CENTER" width="100%"/>
 						<gwt:TextBox ui:field="mailInput" res:styleName="style.input" alignment="JUSTIFY" width="100%" textAlignment="ALIGN_CENTER" maxLength="30"  visibleLength="30" focus="true" direction="LTR"/>
 						<gwt:Label width="100%" direction="RTL" horizontalAlignment="ALIGN_CENTER" ui:field="labelError1" text="minimum lenght 6" visible="false"/>
 					
@@ -51,6 +59,5 @@
 	            </div>
 	        </div>
     	</div>
-		
 	</gwt:HTMLPanel>
 </ui:UiBinder> 
